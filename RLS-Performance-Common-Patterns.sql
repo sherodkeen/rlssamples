@@ -174,7 +174,6 @@ CREATE SECURITY POLICY rls.staffPolicyC
 	ADD FILTER PREDICATE rls.staffAccessPredicateC(Region, Date) ON dbo.Sales
 go
 
-drop view vw_SalesC
 CREATE VIEW vw_SalesC
 AS
 	SELECT Sales.* FROM Sales
