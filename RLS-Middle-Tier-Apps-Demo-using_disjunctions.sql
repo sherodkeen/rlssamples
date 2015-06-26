@@ -1,6 +1,8 @@
 
 -- Let's create a new function that continues filtering as before when CONTEXT_INFO is set, 
--- but allows a call without CONTEXT_INFO set to see all rows
+-- but allows a call without CONTEXT_INFO set to see all rows.
+-- Note that on Azure SQL Database, CONTEXT_INFO returns a unique connection GUID (not null)
+-- if it has not been set, so you must execute SET CONTEXT_INFO 0x to reset it to null.
 --
 CREATE FUNCTION [rls].[fn_userAccessPredicate_with_superuser](@TenantId int) 
 RETURNS TABLE 

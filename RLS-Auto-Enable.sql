@@ -27,7 +27,9 @@ CREATE PROCEDURE dbo.sp_enable_rls_auto (
 	@rlsPredicateFunctionName sysname = null,
 
 	/* Set to 1 to allow CONTEXT_INFO = null to have access to all rows. Default is 0.
-	   Not applicable if @rlsPredicateFunctionName is set with a custom predicate function. */
+	   Not applicable if @rlsPredicateFunctionName is set with a custom predicate function. 
+	   Note that on Azure SQL Database, CONTEXT_INFO is pre-populated with a unique connection GUID (not null), 
+	   so you must execute SET CONTEXT_INFO 0x to reset it to null for this 'admin' mode to work. */
 	@isNullAdmin bit = 0,
 
 	/* If @isNullAdmin = 1, set to 1 to optimize the CONTEXT_INFO = null disjunction into a range query. 
